@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>My Home Page</title>
+</head>
+<body onload="initAll();">
+<div id="game-container"></div>
+<button onclick="openGames();">Open Games</button>
+<br />
+<br />
+
+
+<div id="work-container"></div>
+<button onclick="openWorks();">Open Works</button>
+<br />
+<br />
+
+<input id="ticketID" type="text" value="" placeholder="Insert multiple ticket ID separate by semicolon(;)"/>
+<button onclick="openTickets();">Open Jira Tickets</button>
+<br />
+<br />
+<input id="pullID" type="text" value="" placeholder="Insert multiple pull ID separate by semicolon(;)"/>
+<button onclick="openPulls();">Open Pull Requests</button>
+<br />
+<br />
+
+<div id="wikipedigo-container"></div>
+<button onclick="openWikipedigo();">Open Wikipedigo</button>
+<br />
+<br />
+
+<h2>Wikipedigo Prod</h2>
+<button onclick="openIgo('prod');">Open Wikipedigo</button>
+<br />
+<h2>Wikipedigo Dev</h2>
+<button onclick="openIgo('dev');">Open Wikipedigo</button>
+<br />
+<br />
+
+<h2>Password Generator</h2>
+<label for="master">Master Key: </label>
+<input type="password" id="master" name="master" />
+<br />
+<label for="purpose">Purpose: </label>
+<input type="password" id="purpose" name="purpose" />
+<button onclick="generatePassword();">Generate</button>
+<br />
+<label for="result">Result: </label>
+<input type="text" id="result" name="result" size="66" />
+<br /><br />
+
+<script type="text/javascript" src="home.js"></script>
+<script type="text/javascript" src="seedrandom.js"></script>
+</body>
+</html>
