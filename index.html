@@ -10,21 +10,6 @@
 <br />
 <br />
 
-
-<div id="work-container"></div>
-<button onclick="openWorks();">Open Works</button>
-<br />
-<br />
-
-<input id="ticketID" type="text" value="" placeholder="Insert multiple ticket ID separate by semicolon(;)"/>
-<button onclick="openTickets();">Open Jira Tickets</button>
-<br />
-<br />
-<input id="pullID" type="text" value="" placeholder="Insert multiple pull ID separate by semicolon(;)"/>
-<button onclick="openPulls();">Open Pull Requests</button>
-<br />
-<br />
-
 <div id="wikipedigo-container"></div>
 <button onclick="openWikipedigo();">Open Wikipedigo</button>
 <br />
@@ -39,18 +24,19 @@
 <br />
 
 <h2>Password Generator</h2>
-<label for="master">Master Key: </label>
-<input type="password" id="master" name="master" />
-<br />
-<label for="purpose">Purpose: </label>
-<input type="password" id="purpose" name="purpose" />
-<button onclick="generatePassword();">Generate</button>
-<br />
-<label for="result">Result: </label>
-<input type="text" id="result" name="result" size="66" />
+<form onsubmit="generatePassword(); return false;">
+	<label for="master">Master Key: </label>
+	<input type="password" id="master" name="master" />
+	<br />
+	<label for="purpose">Purpose: </label>
+	<input type="password" id="purpose" name="purpose" />
+	<button type="submit">Generate</button>
+	<br />
+	<label for="result">Result: </label>
+	<input type="text" id="result" name="result" size="66" />
+</form>
 <br /><br />
-
-<script type="text/javascript" src="home.js"></script>
+<script type="text/javascript" src="index.js"></script>
 <script type="text/javascript" src="seedrandom.js"></script>
 </body>
 </html>

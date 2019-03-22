@@ -41,33 +41,6 @@ var data = {
       title: 'Soul and Magic'
     },
   ],
-  works: [
-    {
-      className: 'work',
-      href: 'https://gmail.com',
-      title: 'Gmail'
-    },
-    {
-      className: 'work',
-      href: 'https://tutuplapak.atlassian.net/secure/RapidBoard.jspa?rapidView=30&selectedIssue=TRXS-3052&assignee=yusuf.rahmatullah&assignee=UNASSIGNED_USER_ID',
-      title: 'Jira Board'
-    },
-    {
-      className: 'passive',
-      href: 'https://diskusi.bukalapak.io/',
-      title: 'Buka Diskusi'
-    },
-    {
-      className: 'work',
-      href: 'https://calendar.google.com/calendar/r',
-      title: 'GCalendar'
-    },
-    {
-      className: 'passive',
-      href: 'https://trello.com/b/H1OlcJ5F/trxs',
-      title: 'TRXS Todos'
-    },
-  ],
   wikipedigos: [
     {
       className: 'passive',
@@ -80,45 +53,11 @@ var data = {
       title: 'Wikipedigolang Drive'
     },
   ],
-  jiraTickets: [
-    3243,
-    3402
-  ],
-  pullIDs: [
-    38742,
-    38910
-  ],
-  anotherLinks: [
-  ],
 };
 
 function generateWikipedigos() {
   var gc = document.getElementById('wikipedigo-container');
   data.wikipedigos.forEach(g => {
-    var a = document.createElement('a');
-    a.setAttribute('class', g.className);
-    a.setAttribute('href', g.href);
-    a.setAttribute('target', '_blank');
-    a.innerHTML = g.title;
-    var b = document.createElement('br');
-    gc.append(a);
-    gc.append(b);
-  });
-}
-
-function generatePulls() {
-  var ti = document.getElementById('pullID');
-  ti.setAttribute('value', data.pullIDs.join(';'));
-}
-
-function generateJira() {
-  var ti = document.getElementById('ticketID');
-  ti.setAttribute('value', data.jiraTickets.join(';'));
-}
-
-function generateWorks() {
-  var gc = document.getElementById('work-container');
-  data.works.forEach(g => {
     var a = document.createElement('a');
     a.setAttribute('class', g.className);
     a.setAttribute('href', g.href);
@@ -146,10 +85,7 @@ function generateGames() {
 
 function initAll() {
   generateGames();
-  generateWorks();
   generateWikipedigos();
-  generateJira();
-  generatePulls();
 }
 
 function openIgo(env) {
@@ -165,46 +101,11 @@ function openGames() {
   });
 }
 
-function openWorks() {
-  els = document.querySelectorAll('.work');
-  els.forEach((el) => {
-    el.click();
-  });
-  // open another links
-  data.anotherLinks.forEach(l => {
-    window.open(l);
-  });
-}
-
 function openWikipedigo() {
   els = document.querySelectorAll('.wikipedigo');
   els.forEach((el) => {
     el.click();
   });
-}
-
-function openPulls() {
-  node = document.querySelector('#pullID');
-  value = node.value
-  if (value !== "") {
-    ar = value.split(';');
-    ar.forEach(a => {
-      url = "https://github.com/bukalapak/mothership/pull/" + a.trim();
-      window.open(url);
-    });
-  }
-}
-
-function openTickets() {
-  node = document.querySelector('#ticketID');
-  value = node.value
-  if (value !== "") {
-    ar = value.split(';');
-    ar.forEach(a => {
-      url = "https://tutuplapak.atlassian.net/browse/TRXS-" + a.trim();
-      window.open(url);
-    });
-  }
 }
 
 var _syms = '!@#$%^&*-_'; // 0:10
