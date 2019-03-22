@@ -213,8 +213,10 @@ var _ca = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'; // 2:26
 var _nums = '0123456789'; // 3:10
 
 function generatePassword() {
-  var master = document.getElementById('master').value;
-  var purpose = document.getElementById('purpose').value;
+  var masterI = document.getElementById('master');
+  var master = masterI.value;
+  var purposeI = document.getElementById('purpose');
+  var purpose = purposeI.value;
   var resultI = document.getElementById('result');
   Math.seedrandom(master+'::'+purpose);
   var result = '';
@@ -242,5 +244,7 @@ function generatePassword() {
         break;
     }
   }
+  masterI.value = '';
+  purposeI.value = '';
   resultI.value = result;
 }
