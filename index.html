@@ -15,7 +15,7 @@
 	<h2>Password Generator</h2>
 	<form onsubmit="generatePassword(); return false;">
 		<fieldset>
-			<legend>Password Generator</legend>
+			<legend>Password and Pin Generator</legend>
 			<label for="master">Master Key: </label>
 			<input type="password" id="master" placeholder="Master Key" />
 			<br />
@@ -26,14 +26,16 @@
 			<br />
 			<button type="submit">Generate</button>
 			<br />
-			<label for="result">Result: </label>
+			<label for="result">Password: </label>
+			<input type="checkbox" id="result-toggle" onclick="toggleResult()">Show Password</input>
 			<input type="password" id="result" name="result" />
-			<input type="checkbox" id="result-toggle" onclick="toggleResult()">Show Result</input>
+			<label for="pin-result">Pin: </label>
+			<input type="password" id="pin-result" name="pin-result" />
+			<input type="checkbox" id="pin-result-toggle" onclick="togglePinResult()">Show Pin</input>
 		</fieldset>
 	</form>
-	<br /><br />
-	<script type="text/javascript" src="index.js"></script>
 	<script type="text/javascript" src="seedrandom.js"></script>
+	<script type="text/javascript" src="index.js"></script>
 </body>
 
 </html>

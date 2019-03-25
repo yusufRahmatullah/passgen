@@ -1,113 +1,3 @@
-var data = {
-  games: [
-    {
-      className: 'passive',
-      href: 'http://minmaxia.com/c2/',
-      title: 'Clickpocalypse 2'
-    },
-    {
-      className: 'passive',
-      href: 'http://shimage.net/megamiquest2/en.html',
-      title: 'Megami Quest 2'
-    },
-    {
-      className: 'active',
-      href: 'http://structure.zefiris.su/',
-      title: 'Structure Game'
-    },
-    {
-      className: 'passive',
-      href: 'https://rawgit.com/IvarK/BuildASpaceShip/master/index.html',
-      title: 'Build a Spaceship'
-    },
-    {
-      className: '',
-      href: 'https://keep.google.com/#home',
-      title: 'Google Keep'
-    },
-    {
-      className: 'passive',
-      href: 'https://www.kongregate.com/games/MrJinx/world-of-talesworth',
-      title: 'World of Talesworth'
-    },
-    {
-      className: 'active',
-      href: 'https://epicidlequest.com/',
-      title: 'Epic Idle Quest'
-    },
-    {
-      className: 'passive',
-      href: 'https://www.kongregate.com/games/lord_jello/souls-and-magic',
-      title: 'Soul and Magic'
-    },
-  ],
-  wikipedigos: [
-    {
-      className: 'passive',
-      href: 'https://trello.com/b/Rg10E5Rk/wikipedigolang',
-      title: 'Wikipedigolang Todos'
-    },
-    {
-      className: 'passive',
-      href: 'https://drive.google.com/drive/folders/1QjKPmWLUVwKawDl3OZXiBcDIEtSN5YKy',
-      title: 'Wikipedigolang Drive'
-    },
-  ],
-};
-
-function generateWikipedigos() {
-  var gc = document.getElementById('wikipedigo-container');
-  data.wikipedigos.forEach(g => {
-    var a = document.createElement('a');
-    a.setAttribute('class', g.className);
-    a.setAttribute('href', g.href);
-    a.setAttribute('target', '_blank');
-    a.innerHTML = g.title;
-    var b = document.createElement('br');
-    gc.append(a);
-    gc.append(b);
-  });
-}
-
-function generateGames() {
-  var gc = document.getElementById('game-container');
-  data.games.forEach(g => {
-    var a = document.createElement('a');
-    a.setAttribute('class', g.className);
-    a.setAttribute('href', g.href);
-    a.setAttribute('target', '_blank');
-    a.innerHTML = g.title;
-    var b = document.createElement('br');
-    gc.append(a);
-    gc.append(b);
-  });
-}
-
-function initAll() {
-  generateGames();
-  generateWikipedigos();
-}
-
-function openIgo(env) {
-  host = env==='prod' ? 'https://pg1-go-work.herokuapp.com' : 'http://localhost:3000'
-  sub = ['/', '/job_queue', '/postponed_jobs', '/admin/igprofiles']
-  sub.forEach(s => window.open(host+s));
-}
-
-function openGames() {
-  els = document.querySelectorAll('.active');
-  els.forEach((el) => {
-    el.click();
-  });
-}
-
-function openWikipedigo() {
-  els = document.querySelectorAll('.wikipedigo');
-  els.forEach((el) => {
-    el.click();
-  });
-}
-
 var _syms = '!@#$%^&*-_'; // 0:10
 var _sa = 'abcdefghijklmnopqrstuvwxyz'; // 1:26
 var _ca = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'; // 2:26
@@ -119,18 +9,30 @@ function generatePassword() {
   var purposeI = document.getElementById('purpose');
   var purpose = purposeI.value;
   var resultI = document.getElementById('result');
-  var key = master+'::'+purpose;
+  var pinResultI = document.getElementById('pin-result');
+  var key = master + '::' + purpose;
   masterI.value = '';
   purposeI.value = '';
   resultI.value = _genpass(key);
+  pinResultI.value = _genPin(key);
+}
+
+function _genPin(key) {
+  Math.seedrandom(key);
+  var result = '';
+  for (var i = 0; i < 6; i++) {
+    var nc = parseInt(Math.random() * 10);
+    result += _nums[nc];
+  }
+  return result;
 }
 
 function _genpass(key) {
   Math.seedrandom(key);
   var result = '';
-  for (var i=64; i > 0; i--) {
+  for (var i = 64; i > 0; i--) {
     var nextType = parseInt(Math.random() * 4);
-    switch(nextType) {
+    switch (nextType) {
       case 0:
         var nextI = parseInt(Math.random() * 10);
         result += _syms[nextI];
@@ -160,7 +62,7 @@ function peek() {
   var master = masterI.value;
   var purposeI = document.getElementById('purpose');
   var purpose = purposeI.value;
-  console.log(master+'::'+purpose)
+  console.log(master + '::' + purpose)
 }
 
 function _toggleInput(x) {
@@ -178,6 +80,11 @@ function togglePassword() {
   _toggleInput(purposeI);
 }
 
+function togglePinResult() {
+  var pinResultI = document.getElementById('pin-result');
+  _toggleInput(pinResultI);
+}
+
 function toggleResult() {
   var resultI = document.getElementById('result');
   _toggleInput(resultI);
@@ -188,4 +95,6 @@ function init() {
   cb.checked = false;
   var cbr = document.getElementById('result-toggle');
   cbr.checked = false;
+  var cbpr = document.getElementById('pin-result-toggle');
+  cbpr.checked = false;
 }
