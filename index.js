@@ -178,7 +178,14 @@ function togglePassword() {
   _toggleInput(purposeI);
 }
 
+function toggleResult() {
+  var resultI = document.getElementById('result');
+  _toggleInput(resultI);
+}
+
 function init() {
   var cb = document.getElementById('pass-toggle');
   cb.checked = false;
+  var cbr = document.getElementById('result-toggle');
+  cbr.checked = false;
 }
