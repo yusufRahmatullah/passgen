@@ -119,7 +119,14 @@ function generatePassword() {
   var purposeI = document.getElementById('purpose');
   var purpose = purposeI.value;
   var resultI = document.getElementById('result');
-  Math.seedrandom(master+'::'+purpose);
+  var key = master+'::'+purpose;
+  masterI.value = '';
+  purposeI.value = '';
+  resultI.value = _genpass(key);
+}
+
+function _genpass(key) {
+  Math.seedrandom(key);
   var result = '';
   for (var i=64; i > 0; i--) {
     var nextType = parseInt(Math.random() * 4);
@@ -145,7 +152,33 @@ function generatePassword() {
         break;
     }
   }
-  masterI.value = '';
-  purposeI.value = '';
-  resultI.value = result;
+  return result;
+}
+
+function peek() {
+  var masterI = document.getElementById('master');
+  var master = masterI.value;
+  var purposeI = document.getElementById('purpose');
+  var purpose = purposeI.value;
+  console.log(master+'::'+purpose)
+}
+
+function _toggleInput(x) {
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+
+function togglePassword() {
+  var masterI = document.getElementById('master');
+  var purposeI = document.getElementById('purpose');
+  _toggleInput(masterI);
+  _toggleInput(purposeI);
+}
+
+function init() {
+  var cb = document.getElementById('pass-toggle');
+  cb.checked = false;
 }
