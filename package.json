@@ -1,0 +1,17 @@
+{
+  "name": "passgen",
+  "version": "0.1.0",
+  "description": "password generator using nodejs",
+  "main": "app.js",
+  "repository": "git@github.com:yusufRahmatullah/workspace.git",
+  "author": "Yusuf Rahmatullah <yusufr.main@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "inquirer": "^6.2.2",
+    "seedrandom": "^3.0.1"
+  }
+}
