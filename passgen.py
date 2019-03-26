@@ -55,6 +55,16 @@ def gen_pass(seed):
         result += next_char[nt][nc]
     return result
 
+
+def gen_pin(seed):
+    prng = seedrandom(seed)
+    result = ''
+    for _ in range(6):
+        nc = int(prng() * 10)
+        result += next_char[3][nc]
+    return result
+
+
 def mixkey(seed, input_key):
     def get_smear(key, idx):
         if idx >= len(key):
@@ -168,7 +178,6 @@ def main():
     master = getpass.getpass('Master key: ')
     purpose = getpass.getpass('Purpose: ')
     seed = '%s::%s' % (master, purpose)
-    print('seed:', seed)
     result = gen_pass(seed)
     print('Result:')
     print(result)
